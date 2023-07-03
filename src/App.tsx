@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import SongPanel from './components/SongPanel/songpanel'
 import {ISongItem} from './ISongItem'
+import './App.sass'
 
 
 const App = () => {
@@ -19,7 +20,7 @@ const App = () => {
     return <SongPanel key={song.artist} artist={song.artist} songName={song.songName} length={song.length}/> 
    });
   return (
-    <div>
+    <div id='Songs'>
       {func()}
     </div>
   )
