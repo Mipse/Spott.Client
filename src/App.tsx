@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {useState, useEffect} from 'react'
+import SongPanel from './components/SongPanel/songpanel'
+import {ISongItem} from './ISongItem'
 
-function App() {
+
+const App = () => {
+  const[songs, setSongs] = useState<ISongItem[]>()
+   useEffect(() => {
+    const dataFetch = async () =>{
+      const data = await (
+      await fetch("http://localhost:5011/songs", {method: 'GET'})
+    ).json()
+    setSongs(data);
+    console.log(data)
+  };
+  dataFetch();
+   },[]);
+   let func = () => songs?.map(song => {
+    return <SongPanel key={song.artist} artist={song.artist} songName={song.songName} length={song.length}/> 
+   });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {func()}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
