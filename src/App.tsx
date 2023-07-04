@@ -4,6 +4,7 @@ import {ISongItem} from './ISongItem'
 import './App.sass'
 import { fetchUri } from './scripts/fetchSongs'
 import Header from './components/header/header'
+import PlayerSong from './components/player/player'
 
 
 const App = () => {
@@ -32,9 +33,14 @@ const App = () => {
    });
   return (
     <div>
-      <Header/>
+      <div id="Header">
+        <Header/>
+      </div>
       <div id='Songs'>
         {isFetched ? func(): 'Loading'}
+      </div>
+      <div id="Player">
+        <PlayerSong/>
       </div>
     </div>
   )
