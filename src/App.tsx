@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useCallback} from 'react'
 import SongPanel from './components/SongPanel/songpanel'
 import {ISongItem} from './entities/ISongItem'
 import './App.sass'
@@ -7,6 +7,7 @@ import Header from './components/header/header'
 import PlayerSong from './components/player/player'
 import { injector } from './scripts/playerContainer'
 import {Player} from './entities/Player'
+import React from 'react'
 
 
 const App = () => {
@@ -29,10 +30,12 @@ const App = () => {
     SetIsFetched(true);
    }, [songs]);
    const [player,setPlayer] = useState<Player>(injector.get(Player))
+   
    const playerCallback = (player1: Player) =>{
       setPlayer(player1);
    }
-   useEffect(()=>console.log(player.song.id),[player.song.id])
+
+   useCallback(()=>console.log(player.song.id),[player.song])
    let func = () => songsWithUri?.map(song => {
     return <SongPanel key={song.artist} song={song} player={player} onPlayerChange={playerCallback}/> 
    });

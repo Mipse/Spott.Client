@@ -1,6 +1,6 @@
 import './songpanel.sass'
 import {ISongItem} from '../../entities/ISongItem'
-import {useState, FC} from 'react'
+import {useState, FC, useCallback} from 'react'
 import { injector } from '../../scripts/playerContainer'
 import { PlayState } from "../../entities/PlayState"
 import { Player } from "../../entities/Player"
@@ -15,6 +15,8 @@ const SongPanel : FC<SongPanelProps>= ({song, player, onPlayerChange}) => {
   const [audio] = useState(injector.get(Audio));
   const [currentTime, SetCurrentTime] = useState(0);
   const [playState] = useState<PlayState>(injector.get(PlayState));
+
+  useCallback(()=>console.log(player.song.id), [player])
 
   audio.volume = 0.2
   const playfunc = () => {

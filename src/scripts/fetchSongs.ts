@@ -14,7 +14,7 @@ export const fetchUri = async (songs : ISongItem[]) : Promise<ISongItem[]>  =>{
         song.id = x++;
         await fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=" + song.artist + song.songName, options)
         .then(responce => responce.json())
-        .then(data => {try{song.audioUri = data.data[0].preview; console.log(data.data[0].preview)} catch(error){console.log(song.artist+song.songName)}})
+        .then(data => {try{song.audioUri = data.data[0].preview; song.imageSrc = data.data[0].album.cover; console.log(data.data[0].preview)} catch(error){console.log(song.artist+song.songName)}})
         return song;
     }
     ))
