@@ -3,6 +3,7 @@ import SongPanel from './components/SongPanel/songpanel'
 import {ISongItem} from './ISongItem'
 import './App.sass'
 import { fetchUri } from './scripts/fetchSongs'
+import Header from './components/header/header'
 
 
 const App = () => {
@@ -30,8 +31,11 @@ const App = () => {
     return <SongPanel key={song.artist} artist={song.artist} songName={song.songName} length={song.length} audioUri={song.audioUri}/> 
    });
   return (
-    <div id='Songs'>
-      {isFetched ? func(): 'Loading'}
+    <div>
+      <Header/>
+      <div id='Songs'>
+        {isFetched ? func(): 'Loading'}
+      </div>
     </div>
   )
 }
