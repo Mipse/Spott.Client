@@ -1,24 +1,30 @@
 import './songpanel.sass'
-import {ISongItem} from '../../ISongItem'
-import {useState} from 'react'
-import { injector, Player, PlayState } from '../../scripts/playerContainer'
+import {ISongItem} from '../../entities/ISongItem'
+import {useState, FC} from 'react'
+import { injector } from '../../scripts/playerContainer'
+import { PlayState } from "../../entities/PlayState"
+import { Player } from "../../entities/Player"
 
-const SongPanel = ({artist, songName, length, audioUri} : ISongItem) => {
+interface SongPanelProps{
+  song: ISongItem,
+  player: Player,
+  onPlayerChange: ((player: Player) => void)
+}
+
+const SongPanel : FC<SongPanelProps>= ({song, player, onPlayerChange}) => {
   const [audio] = useState(injector.get(Audio));
   const [currentTime, SetCurrentTime] = useState(0);
   const [playState] = useState<PlayState>(injector.get(PlayState));
-  const [player] = useState<Player>(injector.get(Player))
 
   audio.volume = 0.2
   const playfunc = () => {
-    audio.src = audioUri;
+    audio.src = song.audioUri;
     playState.src = audio.src;
     audio.currentTime = currentTime;
       audio.oncanplaythrough = function()
       {
-          player.song.artist = artist
-          player.song.songName = songName
-          player.song.length = length
+          player.song = song;
+          onPlayerChange(player);
           audio.play();
       }
       playState.isPlaying = true;
@@ -32,14 +38,14 @@ const SongPanel = ({artist, songName, length, audioUri} : ISongItem) => {
 
   return (
     <div id="SongPanel">
-        <img src="https://cdn-icons-png.flaticon.com/512/17/17550.png" alt='button' role='button' onClick={() => {if (playState.src === audioUri && playState.isPlaying) pausefunc(); else playfunc()}}/>
+        <img src="https://cdn-icons-png.flaticon.com/512/17/17550.png" alt='button' role='button' onClick={() => {if (playState.src === song.audioUri && playState.isPlaying) pausefunc(); else playfunc()}}/>
         <span id="InfoLength">
           <span id="Info">
-              <h3>{artist}</h3>
-              <h4>{songName}</h4>
+              <h3>{song.artist}</h3>
+              <h4>{song.songName}</h4>
           </span>
           <span id='Length'>
-            <h1>{length}</h1>
+            <h1>{song.length}</h1>
           </span>
         </span>
     </div>

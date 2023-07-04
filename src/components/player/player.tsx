@@ -1,16 +1,32 @@
-import {useEffect, useState} from 'react'
-import { injector, Player } from '../../scripts/playerContainer'
+import {useEffect} from 'react'
+import { Player } from "../../entities/Player";
 import './player.sass'
 
-const PlayerSong = () => {
-   const [player] = useState<Player>(injector.get(Player));
-   useEffect(() => console.log(player.song), [player])
-   setTimeout(() => console.log(player.song), 10000);
+interface PlayerSongProps{
+    player : Player
+}
+
+const PlayerSong: React.FC<PlayerSongProps> = ({player}) => {
+   useEffect(() => {
+    const interval = setInterval(() =>{
+        RenderPlayer(player)
+    }, 2000);
+    return () => clearInterval(interval)
+   })
+
+    useEffect(() => console.log(player.song.id),[player])
+
+   const RenderPlayer = (player: Player) => {
+        return(
+            <div>
+                {player.song.artist}
+            </div>
+        )
+   }
   return (
     <div id="Player">
         <div>
-            {injector.get(Player).song.artist}
-            {player.song.songName}
+            {player.song.id}
         </div>
     </div>
   )
