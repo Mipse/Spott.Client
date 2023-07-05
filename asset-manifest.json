@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Spott.Client/static/css/main.e858d9e1.css",
+    "main.js": "/Spott.Client/static/js/main.2948adfa.js",
+    "index.html": "/Spott.Client/index.html",
+    "main.e858d9e1.css.map": "/Spott.Client/static/css/main.e858d9e1.css.map",
+    "main.2948adfa.js.map": "/Spott.Client/static/js/main.2948adfa.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e858d9e1.css",
+    "static/js/main.2948adfa.js"
+  ]
+}
