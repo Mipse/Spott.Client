@@ -8,7 +8,6 @@ import Header from './components/header/header'
 import PlayerSong from './components/player/player'
 import { injector } from './scripts/playerContainer'
 import {Player} from './entities/Player'
-import React from 'react'
 import { getToken } from './scripts/getToken'
 
 const App = () => {
@@ -18,17 +17,22 @@ const App = () => {
    useEffect(() => {
     const dataFetch = async () =>{
       const data = await (
-      await fetch("http://192.168.100.29:5011/songs", {method: 'GET'})
+      await fetch("http://localhost:5011/songs", {method: 'GET'})
     ).json()
     setSongs(data);
   };
   dataFetch();
    },[]);
- 
+
+   useEffect(() =>{
+    document.title = "Spott"
+   },[])
+
    useEffect(() => {
     fetchUri(songs!).then(songs => setSongsWithUri(songs));
     SetIsFetched(true);
    }, [songs]);
+   
    const [player,setPlayer] = useState<Player>(injector.get(Player))
    
    const playerCallback = (player1: Player) =>{
