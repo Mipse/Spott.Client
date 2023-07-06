@@ -25,7 +25,7 @@ const PlayerSong: React.FC<PlayerSongProps> = ({player}) => {
         }, 1000);
         return () => clearInterval(interval)
        })
-  return (
+  return ( playerBar.isPlaying ? 
     <div id="Player">
         <div>
             <img id="Album" src={player.song.imageSrc} alt='album preview'/>
@@ -34,7 +34,7 @@ const PlayerSong: React.FC<PlayerSongProps> = ({player}) => {
                 <h1 id="SongName">{playerBar.songname}</h1>
             </div>
         </div>
-    </div>
+    </div> : <></>
   )
 }
 
