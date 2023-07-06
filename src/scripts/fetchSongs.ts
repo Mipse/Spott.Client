@@ -12,7 +12,7 @@ export const fetchUri = async (songs : ISongItem[]) : Promise<ISongItem[]>  =>{
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': '94966d2417msh9ab231a24f37fccp146266jsn17eadde243c3',
+        'X-RapidAPI-Key': process.env.REACT_APP_X_RapidAPI_Key,
         'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
       }
     };
