@@ -1,4 +1,4 @@
-import {useState, useEffect, useCallback} from 'react'
+import {useState, useEffect} from 'react'
 import SongPanel from './components/SongPanel/songpanel'
 import {ISongItem} from './entities/ISongItem'
 import './App.sass'
@@ -7,13 +7,14 @@ import Header from './components/header/header'
 import PlayerSong from './components/player/player'
 import { injector } from './scripts/playerContainer'
 import {Player} from './entities/Player'
+import {PostSongForm} from './components/postSongForm/postSongForm'
 
 const App = () => {
   const[songs, setSongs] = useState<ISongItem[]>()
    useEffect(() => {
     const dataFetch = async () =>{
       const data = await (
-      await fetch("http://localhost:5012/songs", {method: 'GET'})
+      await fetch("https://spott.fly.dev/songs", {method: 'GET'})
     ).json()
     setSongs(data);
   };
@@ -48,7 +49,10 @@ const App = () => {
               </div>
             </div>
       }>
-      </Route>   
+      </Route>  
+      <Route path='/Spott.Client/submit' element={
+        <PostSongForm/>
+      }></Route> 
     </Routes>
 
     </>
