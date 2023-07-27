@@ -1,6 +1,6 @@
 import './songpanel.sass'
 import {ISongItem} from '../../entities/ISongItem'
-import {useState, FC, useCallback} from 'react'
+import {useState, FC, useEffect} from 'react'
 import { injector } from '../../scripts/playerContainer'
 import { PlayState } from "../../entities/PlayState"
 import { Player } from "../../entities/Player"
@@ -15,7 +15,16 @@ const SongPanel : FC<SongPanelProps>= ({song, player, onPlayerChange}) => {
   const [audio] = useState(injector.get(Audio));
   const [currentTime, SetCurrentTime] = useState(0);
   const [playState] = useState<PlayState>(injector.get(PlayState));
+  const [playIcon, SetPlayIcon] = useState<string>("https://icon-library.com/images/play-icon-white-png/play-icon-white-png-8.jpg");
 
+  useEffect(() => {
+    const interval = setInterval(() =>{
+      if (playState.isPlaying && playState.src === song.playUri) 
+      SetPlayIcon("https://o.remove.bg/downloads/6c0f4b85-648c-432d-b4bd-7e88005c0bcf/Transparent-Blue-Pause-Button-Png-removebg-preview.png");
+      else SetPlayIcon("https://icon-library.com/images/play-icon-white-png/play-icon-white-png-8.jpg")
+    }, 200);
+    return () => clearInterval(interval)
+   })
 
   audio.volume = 0.2
   const playfunc = () => {
@@ -39,7 +48,7 @@ const SongPanel : FC<SongPanelProps>= ({song, player, onPlayerChange}) => {
 
   return (
     <div id="SongPanel">
-        <img src={"https://icon-library.com/images/play-icon-white-png/play-icon-white-png-8.jpg"} alt='button' role='button' onClick={() => {if (playState.src === song.playUri && playState.isPlaying) pausefunc(); else playfunc()}}/>
+        <img src={playIcon} alt='button' role='button' onClick={() => {if (playState.src === song.playUri && playState.isPlaying) pausefunc(); else playfunc()}}/>
         <span id="InfoLength">
           <span id="Info">
               <h3>{song.artist}</h3>

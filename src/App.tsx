@@ -13,7 +13,7 @@ const App = () => {
    useEffect(() => {
     const dataFetch = async () =>{
       const data = await (
-      await fetch("https://spott.fly.dev/songs", {method: 'GET'})
+      await fetch("http://localhost:5012/songs", {method: 'GET'})
     ).json()
     setSongs(data);
   };
