@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 import SongPanel from './components/SongPanel/songpanel'
 import {ISongItem} from './entities/ISongItem'
 import './App.sass'
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route, HashRouter, BrowserRouter, Link} from 'react-router-dom'
 import Header from './components/header/header'
 import PlayerSong from './components/player/player'
 import { injector } from './scripts/playerContainer'
@@ -35,8 +35,9 @@ const App = () => {
     return <SongPanel key={song.artist} song={song} player={player} onPlayerChange={playerCallback}/> 
    });
   return (
-    <><Routes>
-      <Route path='/Spott.Client' element={
+    <BrowserRouter>
+      <Routes>
+    <Route path='/Spott.Client' element={
               <div>
               <div id="Header">
                 <Header/>
@@ -50,12 +51,12 @@ const App = () => {
             </div>
       }>
       </Route>  
-      <Route path='/Spott.Client/submit' element={
+      <Route path='/submit' element={
         <PostSongForm/>
       }></Route> 
     </Routes>
+    </BrowserRouter>
 
-    </>
   )
 }
 
