@@ -28,7 +28,7 @@ const PlayerSong: React.FC<PlayerSongProps> = ({player}) => {
   return ( playerBar.isPlaying ? 
     <div id="Player">
         <div>
-            <img id="Album" src={player.song.imageSrc} alt='album preview'/>
+            <img id="Album" src={player.song.imageUri} alt='album preview'/>
             <div id="ArtistAndSong">
                 <h1 id="Artist">{playerBar.artist}</h1>
                 <h1 id="SongName">{playerBar.songname}</h1>

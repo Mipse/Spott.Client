@@ -16,11 +16,10 @@ const SongPanel : FC<SongPanelProps>= ({song, player, onPlayerChange}) => {
   const [currentTime, SetCurrentTime] = useState(0);
   const [playState] = useState<PlayState>(injector.get(PlayState));
 
-  useCallback(()=>console.log(player.song.id), [player])
 
   audio.volume = 0.2
   const playfunc = () => {
-    audio.src = song.audioUri;
+    audio.src = song.playUri;
     playState.src = audio.src;
     audio.currentTime = currentTime;
       audio.oncanplaythrough = function()
@@ -40,7 +39,7 @@ const SongPanel : FC<SongPanelProps>= ({song, player, onPlayerChange}) => {
 
   return (
     <div id="SongPanel">
-        <img src="https://cdn-icons-png.flaticon.com/512/17/17550.png" alt='button' role='button' onClick={() => {if (playState.src === song.audioUri && playState.isPlaying) pausefunc(); else playfunc()}}/>
+        <img src={"https://icon-library.com/images/play-icon-white-png/play-icon-white-png-8.jpg"} alt='button' role='button' onClick={() => {if (playState.src === song.playUri && playState.isPlaying) pausefunc(); else playfunc()}}/>
         <span id="InfoLength">
           <span id="Info">
               <h3>{song.artist}</h3>

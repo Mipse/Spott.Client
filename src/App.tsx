@@ -3,16 +3,13 @@ import SongPanel from './components/SongPanel/songpanel'
 import {ISongItem} from './entities/ISongItem'
 import './App.sass'
 import {Routes, Route} from 'react-router-dom'
-import { fetchUri } from './scripts/fetchSongs'
 import Header from './components/header/header'
 import PlayerSong from './components/player/player'
 import { injector } from './scripts/playerContainer'
 import {Player} from './entities/Player'
 
 const App = () => {
-  const [isFetched, SetIsFetched] = useState(false);
   const[songs, setSongs] = useState<ISongItem[]>()
-  const[songsWithUri, setSongsWithUri] = useState<ISongItem[]>()
    useEffect(() => {
     const dataFetch = async () =>{
       const data = await (
@@ -26,11 +23,6 @@ const App = () => {
    useEffect(() =>{
     document.title = "Spott"
    },[])
-
-   useEffect(() => {
-    fetchUri(songs!).then(songs => setSongsWithUri(songs));
-    SetIsFetched(true);
-   }, [songs]);
    
    const [player,setPlayer] = useState<Player>(injector.get(Player))
    
@@ -38,8 +30,7 @@ const App = () => {
       setPlayer(player1);
    }
 
-   useCallback(()=>console.log(player.song.id),[player.song])
-   let func = () => songsWithUri?.map(song => {
+   let func = () => songs?.map(song => {
     return <SongPanel key={song.artist} song={song} player={player} onPlayerChange={playerCallback}/> 
    });
   return (
@@ -50,7 +41,7 @@ const App = () => {
                 <Header/>
               </div>
               <div id='Songs'>
-                {isFetched ? func(): 'Loading'}
+                {func()}
               </div>
               <div id="Player">
                 <PlayerSong player={player}/>
