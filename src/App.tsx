@@ -8,7 +8,6 @@ import Header from './components/header/header'
 import PlayerSong from './components/player/player'
 import { injector } from './scripts/playerContainer'
 import {Player} from './entities/Player'
-import { getToken } from './scripts/getToken'
 
 const App = () => {
   const [isFetched, SetIsFetched] = useState(false);
@@ -58,11 +57,7 @@ const App = () => {
               </div>
             </div>
       }>
-      </Route> 
-      <Route path='/token' element={
-          <input type="button" onClick={() => {getToken()}}>
-        </input>
-      }></Route>     
+      </Route>   
     </Routes>
 
     </>
