@@ -7,7 +7,11 @@ export const PostSongForm = () => {
     const [postSongLength, SetPostSongLength] = useState<string>("");
 
     let Post = () => {
+<<<<<<< HEAD
         fetch("https://spott.fly.dev/songs",
+=======
+        fetch("http://localhost:5012/songs",
+>>>>>>> c3317ee092d74ede164dd429a6880bbc48c53f11
             {
             headers: {
                 'Content-Type': 'application/json'
