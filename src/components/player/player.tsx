@@ -22,7 +22,7 @@ const PlayerSong: React.FC<PlayerSongProps> = ({player}) => {
     useEffect(() => {
         const interval = setInterval(() =>{
             setPlayerBar({songname: player.song.songName, artist: player.song.artist, isPlaying: injector.get(PlayState).isPlaying});
-        }, 1000);
+        }, 500);
         return () => clearInterval(interval)
        })
   return ( playerBar.isPlaying ? 

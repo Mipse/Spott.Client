@@ -16,7 +16,7 @@ interface SongPanelProps{
 const SongPanel : FC<SongPanelProps>= ({song, player, onPlayerChange}) => {
   const [audio] = useState(injector.get(Audio));
   const [currentTime, SetCurrentTime] = useState(0);
-  const [playState] = useState<PlayState>(injector.get(PlayState));
+  const [playState, SetPlayState] = useState<PlayState>(injector.get(PlayState));
   const [playIcon, SetPlayIcon] = useState<any>("https://icon-library.com/images/play-icon-white-png/play-icon-white-png-8.jpg");
 
   useEffect(() => {
@@ -25,6 +25,13 @@ const SongPanel : FC<SongPanelProps>= ({song, player, onPlayerChange}) => {
       SetPlayIcon(pauseIcon);
       else SetPlayIcon(onplayIcon)
     }, 200);
+    return () => clearInterval(interval)
+   })
+
+   useEffect(() => {
+    const interval = setInterval(() =>{
+      if (audio.currentTime >= 30) playState.isPlaying = false; 
+    }, 500);
     return () => clearInterval(interval)
    })
 
