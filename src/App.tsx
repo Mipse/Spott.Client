@@ -39,24 +39,24 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-    <Route path='/Spott.Client' element={
-              <div>
-              <div id="Header">
-                <Header/>
-              </div>
-              <div id='Songs'>
-                {isFetced ? func() : <div id="Loader"></div>}
-              </div>
-              <div id="Player">
-                <PlayerSong player={player}/>
-              </div>
+        <Route path='/Spott.Client' element={
+          <div>
+            <div id="Header">
+              <Header/>
             </div>
-      }>
-      </Route>  
-      <Route path='/submit' element={
-        <PostSongForm/>
-      }></Route> 
-    </Routes>
+            <div id='Songs'>
+              {isFetced ? func() : <div id="Loader"></div>}
+            </div>
+            <div id="Player">
+              <PlayerSong player={player}/>
+            </div>
+          </div>
+        }>
+        </Route>  
+        <Route path='/submit' element={
+         <PostSongForm/>
+        }></Route> 
+      </Routes>
     </BrowserRouter>
 
   )

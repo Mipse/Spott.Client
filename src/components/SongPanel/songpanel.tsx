@@ -52,7 +52,7 @@ const SongPanel : FC<SongPanelProps>= ({song, player, onPlayerChange}) => {
   return (
     <div id="SongPanel">
         <img id='Preview' src={song.imageUri} alt='Preview'/>
-        <img src={playIcon} id='playIcon' alt='button' role='button' onClick={() => {if (playState.src === song.playUri && playState.isPlaying) pausefunc(); else playfunc()}}/>
+        <img src={playIcon} id='playIcon' alt='button' role='button' onClick={() => {if (playState.src === song.playUri && playState.isPlaying && !audio.paused) pausefunc(); else playfunc()}}/>
         <span id="InfoLength">
           <span id="Info">
               <h3>{song.artist}</h3>
