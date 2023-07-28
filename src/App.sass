@@ -1,21 +1,21 @@
 
 @media only screen and (min-device-width: 1280px) and (max-device-width: 1599px)
   #Wrap
-    grid-template-rows: 6.5% 48% 10%
+    grid-template-rows: 7.5% 54.7% 10%
 
 @media only screen and (min-device-width: 1600px) and (max-device-width: 2000px)
   #Wrap
-    grid-template-rows: 6.5% 67% 10%
+    grid-template-rows: 7.5% 76.2% 10%
 
 body
   height: 100%
   margin: 0
   overflow-y: hidden
-  
+
 #Wrap
   background: #262626
   width: 100%
-  height: 100%
+  height: 1000px
   display: grid
   grid-template-columns: auto
   grid-template-areas: "header_section" "Site-content_section" "player_section"
@@ -24,35 +24,34 @@ body
   padding-top: 3px
   grid-area: "header_section"
 
-#Songs
+#Wrapper
   position: relative
   grid-area: "Site-content-section"
-  overflow-y: auto 
+  overflow-y: auto
 
 #Player
   position: absolute
   bottom: 0px
   grid-area: "player_section"
 
-#Songs::-webkit-scrollbar
-    width: 14px
+#Wrapper::-webkit-scrollbar
+  width: 14px
 
-#Songs::-webkit-scrollbar-track
-    color: #5a5555
-    border-radius: 4px
+#Wrapper::-webkit-scrollbar-track
+  color: #5a5555
+  border-radius: 4px
 
-#Songs::-webkit-scrollbar-thumb
-    background: #807474
-    border-radius: 4px
+#Wrapper::-webkit-scrollbar-thumb
+  background: #807474
+  border-radius: 4px
 
 #Loader
-  display: inline-block
-  width: 80px
-  height: 80px
   margin-top: 12%
+  display: relative
+  width: 80px
   margin-left: 45%
 
-#Loader:after 
+#Loader:after
   content: " "
   display: block
   width: 80px
@@ -64,9 +63,8 @@ body
   animation: Loader 1.2s linear infinite
 
 @keyframes Loader
-  0% 
+  0%
     transform: rotate(0deg)
-  
-  100% 
+
+  100%
     transform: rotate(360deg)
-  

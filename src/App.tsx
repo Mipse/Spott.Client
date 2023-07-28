@@ -44,8 +44,8 @@ const App = () => {
             <div id="Header">
               <Header/>
             </div>
-            <div id='Songs'>
-              {isFetced ? func() : <div id="Loader"></div>}
+            <div id='Wrapper'>
+              {isFetced ? <div id="Songs">{func()}</div> : <div id="Loader"></div>}
             </div>
             <div id="Player">
               <PlayerSong player={player}/>
