@@ -10,13 +10,15 @@ import {Player} from './entities/Player'
 import {PostSongForm} from './components/postSongForm/postSongForm'
 
 const App = () => {
-  const[songs, setSongs] = useState<ISongItem[]>()
+  const [songs, SetSongs] = useState<ISongItem[]>()
+  const [isFetced, SetIsFetched] = useState<boolean>(false)
    useEffect(() => {
     const dataFetch = async () =>{
       const data = await (
       await fetch("https://spott.fly.dev/songs", {method: 'GET'})
     ).json()
-    setSongs(data);
+    SetSongs(data);
+    SetIsFetched(true)
   };
   dataFetch();
    },[]);
@@ -43,7 +45,7 @@ const App = () => {
                 <Header/>
               </div>
               <div id='Songs'>
-                {func()}
+                {isFetced ? func() : <div id="Loader"></div>}
               </div>
               <div id="Player">
                 <PlayerSong player={player}/>
