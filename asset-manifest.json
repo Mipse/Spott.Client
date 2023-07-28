@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Spott.Client/static/css/main.dddf8850.css",
+    "main.css": "/Spott.Client/static/css/main.69ec5bbb.css",
     "main.js": "/Spott.Client/static/js/main.5de59c4a.js",
     "index.html": "/Spott.Client/index.html",
-    "main.dddf8850.css.map": "/Spott.Client/static/css/main.dddf8850.css.map",
+    "main.69ec5bbb.css.map": "/Spott.Client/static/css/main.69ec5bbb.css.map",
     "main.5de59c4a.js.map": "/Spott.Client/static/js/main.5de59c4a.js.map"
   },
   "entrypoints": [
-    "static/css/main.dddf8850.css",
+    "static/css/main.69ec5bbb.css",
     "static/js/main.5de59c4a.js"
   ]
 }
