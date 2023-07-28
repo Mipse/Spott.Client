@@ -16,7 +16,7 @@ interface SongPanelProps{
 const SongPanel : FC<SongPanelProps>= ({song, player, onPlayerChange}) => {
   const [audio] = useState(injector.get(Audio));
   const [currentTime, SetCurrentTime] = useState(0);
-  const [playState] = useState<PlayState>(injector.get(PlayState));
+  const [playState, SetPlayState] = useState<PlayState>(injector.get(PlayState));
   const [playIcon, SetPlayIcon] = useState<any>("https://icon-library.com/images/play-icon-white-png/play-icon-white-png-8.jpg");
 
   useEffect(() => {
