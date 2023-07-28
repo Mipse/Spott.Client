@@ -40,7 +40,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/Spott.Client' element={
-          <div>
+          <div id="Wrap">
             <div id="Header">
               <Header/>
             </div>

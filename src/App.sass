@@ -1,15 +1,38 @@
+
+@media only screen and (min-device-width: 1280px) and (max-device-width: 1599px)
+  #Wrap
+    grid-template-rows: 6.5% 48% 10%
+
+@media only screen and (min-device-width: 1600px) and (max-device-width: 2000px)
+  #Wrap
+    grid-template-rows: 6.5% 67% 10%
+
 body
-    margin: 0px
-    padding: 0px
-    background: #262626
-    width: 100%
-    height: 100%
+  height: 100%
+  margin: 0
+  overflow-y: hidden
+  
+#Wrap
+  background: #262626
+  width: 100%
+  height: 100%
+  display: grid
+  grid-template-columns: auto
+  grid-template-areas: "header_section" "Site-content_section" "player_section"
+
+#Header
+  padding-top: 3px
+  grid-area: "header_section"
 
 #Songs
-    height: 76.5%
-    width: 100%
-    position: absolute
-    overflow-y: auto 
+  position: relative
+  grid-area: "Site-content-section"
+  overflow-y: auto 
+
+#Player
+  position: absolute
+  bottom: 0px
+  grid-area: "player_section"
 
 #Songs::-webkit-scrollbar
     width: 14px
