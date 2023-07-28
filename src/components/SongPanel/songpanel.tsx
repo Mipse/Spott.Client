@@ -28,6 +28,13 @@ const SongPanel : FC<SongPanelProps>= ({song, player, onPlayerChange}) => {
     return () => clearInterval(interval)
    })
 
+   useEffect(() => {
+    const interval = setInterval(() =>{
+      if (audio.paused) playState.isPlaying = false; 
+    }, 500);
+    return () => clearInterval(interval)
+   })
+
   audio.volume = 0.2
   const playfunc = () => {
     audio.src = song.playUri;
