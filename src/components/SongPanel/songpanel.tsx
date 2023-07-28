@@ -16,24 +16,18 @@ interface SongPanelProps{
 const SongPanel : FC<SongPanelProps>= ({song, player, onPlayerChange}) => {
   const [audio] = useState(injector.get(Audio));
   const [currentTime, SetCurrentTime] = useState(0);
-  const [playState, SetPlayState] = useState<PlayState>(injector.get(PlayState));
+  const [playState] = useState<PlayState>(injector.get(PlayState));
   const [playIcon, SetPlayIcon] = useState<any>("https://icon-library.com/images/play-icon-white-png/play-icon-white-png-8.jpg");
 
   useEffect(() => {
     const interval = setInterval(() =>{
-      if (playState.isPlaying && playState.src === song.playUri) 
+      if (playState.isPlaying && playState.src === song.playUri && !audio.paused) 
       SetPlayIcon(pauseIcon);
       else SetPlayIcon(onplayIcon)
     }, 200);
     return () => clearInterval(interval)
    })
 
-   useEffect(() => {
-    const interval = setInterval(() =>{
-      if (audio.paused) playState.isPlaying = false; 
-    }, 500);
-    return () => clearInterval(interval)
-   })
 
   audio.volume = 0.2
   const playfunc = () => {
@@ -57,7 +51,7 @@ const SongPanel : FC<SongPanelProps>= ({song, player, onPlayerChange}) => {
 
   return (
     <div id="SongPanel">
-        <img src={song.imageUri} alt='Preview'/>
+        <img id='Preview' src={song.imageUri} alt='Preview'/>
         <img src={playIcon} id='playIcon' alt='button' role='button' onClick={() => {if (playState.src === song.playUri && playState.isPlaying) pausefunc(); else playfunc()}}/>
         <span id="InfoLength">
           <span id="Info">
