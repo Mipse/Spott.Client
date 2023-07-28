@@ -6,7 +6,7 @@ body
     height: 100%
 
 #Songs
-    height: 76%
+    height: 76.5%
     width: 100%
     position: absolute
     overflow-y: auto 
@@ -21,3 +21,29 @@ body
 #Songs::-webkit-scrollbar-thumb
     background: #807474
     border-radius: 4px
+
+#Loader
+  display: inline-block
+  width: 80px
+  height: 80px
+  margin-top: 12%
+  margin-left: 45%
+
+#Loader:after 
+  content: " "
+  display: block
+  width: 80px
+  height: 80px
+  margin: 8px
+  border-radius: 50%
+  border: 6px solid #fed
+  border-color: #fed transparent #fed transparent
+  animation: Loader 1.2s linear infinite
+
+@keyframes Loader
+  0% 
+    transform: rotate(0deg)
+  
+  100% 
+    transform: rotate(360deg)
+  
